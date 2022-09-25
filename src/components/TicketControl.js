@@ -14,16 +14,21 @@ class TicketControl extends React.Component {
   }
 
   handleClick = () => {
-    this.setState((prevState) => ({
-      formVisible: !prevState.formVisible,
-    }));
+    if (this.state.selectedTicket !== null) {
+      this.setState({
+        formVisible: false,
+        selectedTicket: null,
+      });
+    } else {
+      this.setState((prevState) => ({
+        formVisible: !prevState.formVisible,
+      }));
+    }
   };
 
   handleChangingSelectTicket = (id) => {
     const selectedTicket = this.state.mainTicketList.filter((ticket) => ticket.id === id)[0];
-    this.setState = {
-      selectedTicket: selectedTicket,
-    };
+    this.setState({ selectedTicket: selectedTicket });
   };
 
   handleMakeNewTicket = (newTicket) => {
